@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
-import com.stackroute.RESTHackathon.domain.AppDomain;
+
 import com.stackroute.RESTHackathon.repository.AppRepository;
 import com.stackroute.RESTHackathon.service.AppService;
 import com.stackroute.RESTHackathon.service.AppServiceDaoImpl;
