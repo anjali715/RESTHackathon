@@ -1,59 +1,62 @@
-package com.stackroute.RESTHackathon.service;
-import com.stackroute.RESTHackathon.domain.AppDomain;
-import com.stackroute.RESTHackathon.repository.AppRepository;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
-//Start of Service
-@Service
-public class AppServiceDaoImpl implements AppService {
-    private AppRepository appRepository;
-    
-    //to get all users
-    public Iterable<AppDomain> getAll() {
-        return appRepository.findAll();
-    }
-    
-    //getter function for repository
-    public AppRepository getAppRepository() {
-        return appRepository;
-    }
-    //setter function for repository
-    @Autowired
-    public void setAppRepository(AppRepository appRepository) {
-        this.appRepository = appRepository;
-    }
-    //to find user by id
-    public AppDomain getById(int id) {
-        return appRepository.findById(id);
-    }
-    //to add user
-    public void add(AppDomain appDomain) {
-        appRepository.save(appDomain);
-    }
-    //to update user by id
-    public void update(int id, AppDomain appDomain) {
-        appRepository.save(appDomain);
-    }
-    //to delete user by id
-    public void delete(int id) {
-        appRepository.delete(id);
-    }
-    //to check if user exists in database
-    public boolean ifExists(int id) {
-        if (appRepository.findOne(id) != null)
-            return true;
-        else
-            return false;
-    }
-    //regex for email validation
-    public static final Pattern VALID_EMAIL_ADDRESS_REGEX = Pattern.compile("^[A-Z0-9._%+-]+@[A-Z0-9.-]+\\.[A-Z]{2,6}$",
-            Pattern.CASE_INSENSITIVE);
-    //function for email validation
-    public static boolean validate(String emailStr) {
-        Matcher matcher = VALID_EMAIL_ADDRESS_REGEX.matcher(emailStr);
-        return matcher.find();
-    }
+package com.stackroute.RESTHackathon.domain;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+
+import io.swagger.annotations.ApiModelProperty;
+
+//To declare fields for database table
+@Entity
+public class AppDomain {
+
+	//Fields included
+	@Id
+	@Column(name="id")
+	@ApiModelProperty(notes="Database Generated")
+	private int id;
+	@Column(name="email")
+	private String email;
+	@Column(name="name")
+	private String name;
+	
+	
+	//Getters and setters
+
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
+
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	//Constructors
+	public AppDomain(int id, String email, String name) {
+		super();
+		this.id = id;
+		this.email = email;
+		this.name = name;
+	}
+
+	public AppDomain() {
+
+	}
+
 }
-//End of service

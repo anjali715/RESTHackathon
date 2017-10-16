@@ -1,6 +1,6 @@
 package com.stackroute.RESTHackathon.service;
 
-
+import com.stackroute.RESTHackathon.domain.AppDomain;
 
 //Start of Service Interface 
 public interface AppService {
